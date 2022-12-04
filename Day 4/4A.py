@@ -9,7 +9,6 @@ def doesContain(array1, array2):
 for line in data_file:
     first_elf, second_elf = [list(map(int,word.strip().split("-"))) for word in line.split(",", 1)]
 
-    print(f"{first_elf} - {second_elf} | ", end= "")
     if doesContain(first_elf, second_elf) or doesContain(second_elf, first_elf):
         contained_pairs += 1
 
