@@ -2,7 +2,7 @@ data_file = open("Day 5/5_data.txt", "r")
 stacks_raw, instructions_raw = data_file.read().split('\n\n')
 
 stacks_count = 9
-stacks = [[] for i in range(stacks_count)]
+stacks = [[] for _ in range(stacks_count)]
 steps = []
 
 for line in instructions_raw.split("\n"):
@@ -26,4 +26,4 @@ for step in steps:
         # Part 2
         stacks[target_stack - 1].insert(x, stacks[source_stack - 1].pop(0))
 
-print(f"{''.join([stack[0] for stack in stacks])}", end="")
+print(f"{''.join([stack[0] for stack in stacks])}")
