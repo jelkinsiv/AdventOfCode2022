@@ -26,7 +26,4 @@ for step in steps:
         # Part 2
         stacks[target_stack - 1].insert(x, stacks[source_stack - 1].pop(0))
 
-for stack in stacks:
-    print(stack[0], end="")
-
-print()
+print(f"{''.join([stack[0] for stack in stacks])}", end="")
