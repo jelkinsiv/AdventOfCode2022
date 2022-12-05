@@ -17,9 +17,7 @@ for line in stacks_raw.split("\n"):
             stacks[x].append(obj)
 
 for step in steps:
-    move_count = step[0]
-    source_stack = step[1]
-    target_stack = step[2]
+    move_count, source_stack, target_stack = step
 
     for x in range(move_count):
         # Part 1 
