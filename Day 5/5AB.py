@@ -1,15 +1,15 @@
 data_file = open("Day 5/5_data.txt", "r")
+stacks_raw, instructions_raw = data_file.read().split('\n\n')
 
 stacks_count = 9
 stacks = [[] for i in range(stacks_count)]
 steps = []
 
-for line in data_file:
-    if line[0].startswith("m"):
-        numbers = [int(i) for i in line.split() if i.isdigit()]
-        steps.append(numbers)
-        continue
+for line in instructions_raw.split("\n"):
+    numbers = [int(i) for i in line.split() if i.isdigit()]
+    steps.append(numbers)
 
+for line in stacks_raw.split("\n"):
     for x in range(0, stacks_count):
         obj_str = line[x * 4: x * 4 + 4]
         if len(str(obj_str).strip()) == 3:
