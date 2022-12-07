@@ -13,9 +13,16 @@ class Dir:
         self.name = name
         self.parent = parent
         self.children = []
+        self._size = 0
 
     @property
     def size(self):
+        if self._size <= 0:
+            self._size = self.calcSize()
+        
+        return self._size
+    
+    def calcSize(self):
         size = 0
         for child in self.children:
             if type(child) == ElfFile:
