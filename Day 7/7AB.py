@@ -29,8 +29,6 @@ class ElfFile:
         self.size = int(size)
 
 def parseDataFile(top_dir):
-
-    # set up initial directory
     top_dir = Dir("~", None)
     current_dir = top_dir
     current_dir.children.append(Dir("/", current_dir))
