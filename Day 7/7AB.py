@@ -25,9 +25,6 @@ class Dir:
     def calcSize(self):
         size = 0
         for child in self.children:
-            if type(child) == ElfFile:
-                size += child.size
-            elif type(child) == Dir:
                 size += child.size
         return size
 
@@ -61,7 +58,7 @@ def parseDataFile(top_dir):
 def walkDirScore(current_dir, score):
     score += current_dir.size if current_dir.size < max_file_size else 0
 
-    for cd in [cd for cd in current_dir.children if type(cd) == Dir]:
+    for cd in [cds for cds in current_dir.children if type(cds) == Dir]:
         score = walkDirScore(cd, score)
     
     return score
@@ -69,7 +66,7 @@ def walkDirScore(current_dir, score):
 def walkDirDeletable(current_dir, min_file_size_delete, current_deletable_file_size):
     current_deletable_file_size = min(current_dir.size, current_deletable_file_size) if current_dir.size > min_file_size_delete else current_deletable_file_size
 
-    for cd in [cd for cd in current_dir.children if type(cd) == Dir]:
+    for cd in [cds for cds in current_dir.children if type(cds) == Dir]:
         current_deletable_file_size = min(walkDirDeletable(cd, min_file_size_delete, current_deletable_file_size), current_deletable_file_size)
 
     return current_deletable_file_size
