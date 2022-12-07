@@ -1,4 +1,3 @@
-from colorama import Fore, Back, Style
 data_file = open("Day 7/7_data.txt", "r")
 top_dir = None
 
