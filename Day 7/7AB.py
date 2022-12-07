@@ -69,8 +69,9 @@ def walkDirDeletable(current_dir, min_file_size_delete, current_deletable_file_s
 
     return current_deletable_file_size
 
-# Part A
 top_dir = parseDataFile(top_dir)
+
+# Part A
 root_dir = top_dir.children[0]
 print(f'PART A: {walkDirScore(root_dir, 0)}')
 
