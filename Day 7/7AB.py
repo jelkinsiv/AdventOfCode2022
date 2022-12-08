@@ -8,7 +8,7 @@ max_file_size = 100000
 min_system_size_needed = 30000000
 file_system_size = 70000000
 
-class Dir:
+class Dir():
     def __init__(self, name, parent) -> None:
         self.name = name
         self.parent = parent
