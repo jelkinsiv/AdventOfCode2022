@@ -37,9 +37,9 @@ class Rope():
             previous_segment = self.segments[index]
             distance = segment.position.distance(previous_segment.position)
             if abs(distance) >= 2:
-                position_offset = previous_segment.position - segment.position
-                new_position_delta = Vector2D(sign(position_offset.x), sign(position_offset.y))
-                segment.position = Vector2D(segment.position.x + new_position_delta.x, segment.position.y + new_position_delta.y)
+                position_difference = previous_segment.position - segment.position
+                move_velocity = Vector2D(sign(position_difference.x), sign(position_difference.y))
+                segment.position += move_velocity
 
     def move(self, velocity, distance):
         for _ in range(distance):
