@@ -1,6 +1,8 @@
 from math import sqrt 
 from numpy import sign
 
+FILE_NAME = "Day 9/9_data.txt"
+
 class Vector2D():
     def __init__(self, x, y) -> None:
         self.x = x
@@ -30,7 +32,7 @@ class Rope():
         self.segments = [RopeSegment(self, 0, 0) for _ in range(self.segment_length)]
         self.head_segment = self.segments[0]
         self.tail_segment = self.segments[self.segment_length - 1]
-        self.tail_history = [Vector2D(0, 0)]
+        self.tail_history = [self.tail_segment.position]
 
     def updateSegments(self):
         for index, segment in enumerate(self.segments[1:]):
@@ -61,7 +63,7 @@ def velocityFromDirection(char) -> Vector2D:
 
     return Vector2D(0,0)
 
-lines = [line.strip() for line in open("Day 9/9_data.txt", "r").read().split('\n')]
+lines = [line.strip() for line in open(FILE_NAME, "r").read().split('\n')]
 
 # Part A
 #rope = Rope(2)
