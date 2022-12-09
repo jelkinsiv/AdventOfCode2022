@@ -25,8 +25,8 @@ class RopeSegment():
         self.position = Vector2D(x, y)
 
 class Rope():
-    def __init__(self) -> None:
-        self.segment_count = 2
+    def __init__(self, segment_count) -> None:
+        self.segment_count = segment_count 
         self.segments = [RopeSegment(self, 0, 0) for _ in range(self.segment_count)]
         self.head_segment = self.segments[0]
         self.tail_segment = self.segments[self.segment_count - 1]
@@ -63,7 +63,12 @@ def velocityFromDirection(char) -> Vector2D:
 
 lines = [line.strip() for line in open("Day 9/9_data.txt", "r").read().split('\n')]
 
-rope = Rope()
+# Part A
+#rope = Rope(2)
+
+# Part B
+rope = Rope(10)
+
 for index, line in enumerate(lines):
     direction_char, distance = line.split(" ")
     rope.move(velocityFromDirection(direction_char), int(distance))
