@@ -26,13 +26,13 @@ class RopeSegment():
 
 class Rope():
     def __init__(self, segment_count) -> None:
-        self.segment_count = segment_count 
-        self.segments = [RopeSegment(self, 0, 0) for _ in range(self.segment_count)]
+        self.segment_length = segment_count 
+        self.segments = [RopeSegment(self, 0, 0) for _ in range(self.segment_length)]
         self.head_segment = self.segments[0]
-        self.tail_segment = self.segments[self.segment_count - 1]
+        self.tail_segment = self.segments[self.segment_length - 1]
         self.tail_history = [Vector2D(0, 0)]
 
-    def updateSegments(self, direction):
+    def updateSegments(self):
         for index, segment in enumerate(self.segments[1:]):
             previous_segment = self.segments[index]
             distance = segment.position.distance(previous_segment.position)
@@ -44,7 +44,7 @@ class Rope():
     def move(self, velocity, distance):
         for _ in range(distance):
             self.head_segment.position += velocity
-            self.updateSegments(velocity)
+            self.updateSegments()
 
             if not [history for history in self.tail_history if history.x == rope.tail_segment.position.x and history.y == rope.tail_segment.position.y]:
                 self.tail_history.append(rope.tail_segment.position)
