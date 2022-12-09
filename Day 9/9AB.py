@@ -21,6 +21,9 @@ class Vector2D():
     def __sub__(self, vector: 'Vector2D'):
         return Vector2D(self.x - vector.x, self.y - vector.y)
 
+    def __eq__(self, vector: 'Vector2D') -> bool:
+        return (self.x == vector.x and self.y == vector.y)
+
 class RopeSegment():
     def __init__(self, rope, x, y) -> None:
         self.rope = rope
@@ -28,8 +31,8 @@ class RopeSegment():
 
 class Rope():
     def __init__(self, segment_count) -> None:
-        self.segment_length = segment_count 
-        self.segments = [RopeSegment(self, 0, 0) for _ in range(self.segment_length)]
+        self.segment_length: int = segment_count 
+        self.segments: Arr = [RopeSegment(self, 0, 0) for _ in range(self.segment_length)]
         self.head_segment = self.segments[0]
         self.tail_segment = self.segments[self.segment_length - 1]
         self.tail_history = [self.tail_segment.position]
@@ -48,7 +51,7 @@ class Rope():
             self.head_segment.position += velocity
             self.updateSegments()
 
-            if not [history for history in self.tail_history if history.x == rope.tail_segment.position.x and history.y == rope.tail_segment.position.y]:
+            if not [history for history in self.tail_history if history == rope.tail_segment.position]:
                 self.tail_history.append(rope.tail_segment.position)
 
 def velocityFromDirection(char) -> Vector2D:
