@@ -32,7 +32,7 @@ class RopeSegment():
 class Rope():
     def __init__(self, segment_count) -> None:
         self.segment_length: int = segment_count 
-        self.segments: Arr = [RopeSegment(self, 0, 0) for _ in range(self.segment_length)]
+        self.segments = [RopeSegment(self, 0, 0) for _ in range(self.segment_length)]
         self.head_segment = self.segments[0]
         self.tail_segment = self.segments[self.segment_length - 1]
         self.tail_history = [self.tail_segment.position]
