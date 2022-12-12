@@ -1,14 +1,13 @@
 from enum import Enum
 from math import prod
 
-FILE_NAME = "Day 11/11_data_test.txt"
+FILE_NAME = "Day 11/11_data.txt"
 
 class Operators(Enum):
     ADD = 0
     SUB = 1
     MULTIPLE = 2
     DIVIDE = 3
-
 class Monkey():
     def __init__(self, raw_monkey_data) -> None:
         self.monkey_id = 0
@@ -41,7 +40,10 @@ class Monkey():
 
     def throw(self, game):
         item = self.items[0]
-        target_monkey = game.monkeyById(self.test_target_true) if item % self.test_value == 0 else game.monkeyById(self.test_target_false)
+        if item % self.test_value == 0:
+            target_monkey = game.monkeyById(self.test_target_true) 
+        else:
+            target_monkey = game.monkeyById(self.test_target_false)
         target_monkey.items.append(item)
         self.items.pop(0)
         pass
@@ -66,18 +68,25 @@ class MonkeyGame():
     def __init__(self, monkeys, round_count) -> None:
         self.monkeys = monkeys
         self.round_count = round_count
+        self.mod_value = prod([monkey.test_value for monkey in self.monkeys])
 
     def run_game(self):
-        for _ in range(self.round_count):
+        for i in range(self.round_count):
             self.start_round()
-            breakpoint
 
     def start_round(self):
         for monkey in self.monkeys:
             for _ in range(len(monkey.items)):
                 monkey.inspect()
-                monkey.items[0] //= 3
+                monkey.items[0] = self.manage_worry(monkey.items[0])
                 monkey.throw(self)
+    
+    def manage_worry(self, item) -> int:
+
+        # part A
+        #return item //= 3
+
+        return item % self.mod_value
 
     @property
     def monkey_business_score(self):
@@ -87,7 +96,7 @@ class MonkeyGame():
         return [monkey for monkey in self.monkeys if monkey.monkey_id == monkey_id][0]
 
 raw_monkey_data = [data.strip() for data in open(FILE_NAME, "r").read().split('\n\n')]
-game = MonkeyGame([Monkey(monkey_raw) for monkey_raw in raw_monkey_data], 20)
+game = MonkeyGame([Monkey(monkey_raw) for monkey_raw in raw_monkey_data], 10000)
 game.run_game()
 
 print(f"Monkey Business: {game.monkey_business_score}")
