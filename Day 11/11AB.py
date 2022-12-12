@@ -8,6 +8,7 @@ class Operators(Enum):
     SUB = 1
     MULTIPLE = 2
     DIVIDE = 3
+    
 class Monkey():
     def __init__(self, raw_monkey_data) -> None:
         self.monkey_id = 0
@@ -46,7 +47,6 @@ class Monkey():
             target_monkey = game.monkeyById(self.test_target_false)
         target_monkey.items.append(item)
         self.items.pop(0)
-        pass
 
     def hydrateFromString(self, raw_monkey_data):
         lines = raw_monkey_data.split("\n")
