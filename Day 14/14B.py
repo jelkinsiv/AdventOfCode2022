@@ -118,7 +118,7 @@ while run_simulation:
         else:
             map.tiles[sand.y - map.y_offset][sand.x - map.x_offset].setSand()
             sand.isFalling = False
-    sand_count += 1
+            sand_count += 1
 
 map.drawMap()
 print(f"INTO THE ABYSS: {sand_count}")

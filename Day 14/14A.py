@@ -20,7 +20,6 @@ class Tile:
         
 class Map:
     def __init__(self, width, height, x_offset, y_offset) -> None:
-        
         self.tiles = [[None] * width for _ in range(height)]
         self.width = width
         self.height = height
@@ -117,8 +116,7 @@ while run_simulation:
         else:
             map.tiles[sand.y - map.y_offset][sand.x - map.x_offset].setSand()
             sand.isFalling = False
-    sand_count += 1
+            sand_count += 1
 
 map.drawMap()
-print(f"INTO THE ABYSS: {sand_count - 1}")
-print()
+print(f"INTO THE ABYSS: {sand_count}")
