@@ -71,13 +71,13 @@ class Sand:
         self.x = x
         self.y = y
 
+lines = [[literal_eval(segment) for segment in line.split("->")] for line in open(FILE_NAME, "r").read().split('\n')]
+line_paths = np.array(lines)
+
 max_x = 0
 max_y = 0
 min_x = 1000
 min_y = 0
-
-lines = [[literal_eval(segment) for segment in line.split("->")] for line in open(FILE_NAME, "r").read().split('\n')]
-line_paths = np.array(lines)
 
 for line in line_paths:
     for segment_point in line:
